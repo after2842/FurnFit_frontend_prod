@@ -22,3 +22,5 @@ const LoadingState = () => (
     </div>
   </div>
 );
+
+export { LoadingState };
