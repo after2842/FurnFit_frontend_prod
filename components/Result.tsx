@@ -2,7 +2,7 @@ interface FurnitureItem {
   id: string;
   name: string;
   price: number;
-  imageUrl: string;
+  image_url: string;
 }
 interface ResultProps {
   type: string;
@@ -15,14 +15,23 @@ interface ResultProps {
 const Result = ({ type, style, roomWidth, roomLength, items }: ResultProps) => {
   return (
     <div className="bg-white border rounded-xl">
-      <div>
-        RESULTS FOR type: {type} style:{style} roomWidth:{roomWidth} roomLength
-        {roomLength}
+      <div className="text-xl font-bold ">
+        RESULTS FOR <br />
+        type: <a className="text-red-500 text-3xl">{type}</a>
+        <br />
+        style: <a className="text-red-500 text-3xl">{style}</a> <br />
+        roomWidth: <a className="text-red-500 text-3xl">{roomWidth}</a> <br />
+        roomLength
+        <a className="text-red-500 text-3xl">{roomLength}</a>
       </div>
       {items.length > 0 ? (
         items.map((item) => (
-          <div key={item.id}>
-            <img src={item.imageUrl} alt={item.name} />
+          <div className="mt-12" key={item.id}>
+            <img
+              className="border-2 border-black rounded-xl cursor-pointer"
+              src={item.image_url}
+              alt={item.name}
+            />
           </div>
         ))
       ) : (

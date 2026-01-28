@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Armchair,
   Sofa,
@@ -12,6 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 const PreferencesScreen = ({}) => {
+  const router = useRouter();
   const [selectedType, setSelectedType] = useState("sofa");
   const [selectedStyle, setSelectedStyle] = useState("modern");
   const [roomWidth, setRoomWidth] = useState(12);
@@ -51,28 +53,15 @@ const PreferencesScreen = ({}) => {
     },
   ];
   const handleSubmit = async () => {
-    try {
-      // Replace this URL with your actual NestJS endpoint
-      const response = await fetch("http://localhost:3001/api/preferences", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          type: selectedType,
-          style: selectedStyle,
-          width: roomWidth,
-          length: roomLength,
-        }),
-      });
+    // Navigate to result page with query parameters
+    const params = new URLSearchParams({
+      type: selectedType,
+      style: selectedStyle,
+      width: roomWidth.toString(),
+      length: roomLength.toString(),
+    });
 
-      if (!response.ok) throw new Error("Submission failed");
-
-      const result = await response.json();
-      console.log("Success:", result);
-    } catch (error) {
-      console.error("Error submitting preferences:", error);
-    }
+    router.push(`/result?${params.toString()}`);
   };
   return (
     <div className="flex flex-col items-center animate-in fade-in duration-700">
