@@ -9,11 +9,12 @@ export default async function ResultsPage({
   const style = query.style || "modern";
   const width = Number(query.width) || 12;
   const length = Number(query.length) || 14;
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   let furniture = [];
   try {
     console.log("page was called");
-    const res = await fetch(`http://localhost:3001/furniture/search-all`, {
+    const res = await fetch(`${BASE_URL}/furniture/search-all`, {
       //temporarily not passing query params now! => later pass it with params that matches the controller's requirement.
       cache: "no-store",
     });
