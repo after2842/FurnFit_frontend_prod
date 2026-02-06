@@ -1,24 +1,7 @@
 "use client";
 
-import {
-  Armchair,
-  Sofa,
-  Bed,
-  Lamp,
-  Ruler,
-  Palette,
-  Search,
-  ArrowRight,
-  ChevronLeft,
-  Heart,
-  ShoppingBag,
-  Home,
-  User,
-  CheckCircle2,
-  Sparkles,
-  Menu,
-  X,
-} from "lucide-react";
+import { Armchair, Search, Heart, User } from "lucide-react";
+import { UserIcon } from "./UserIcon";
 const Navbar = ({}) => (
   <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
     <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -57,7 +40,7 @@ const Navbar = ({}) => (
           <Heart size={20} />
         </button>
         <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200 cursor-pointer hover:bg-slate-200 transition-colors">
-          <User size={16} />
+          <UserIcon isAuthed={false} />
         </div>
       </div>
     </div>

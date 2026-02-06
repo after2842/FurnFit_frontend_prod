@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+
 import {
   Armchair,
   Sofa,
@@ -49,7 +50,7 @@ const PreferencesScreen = ({}) => {
       id: "boho",
       label: "Boho",
       color: "bg-orange-50",
-      img: "https://images.unsplash.com/photo-1522771753035-4a58d943da76?auto=format&fit=crop&w=400&q=80",
+      img: "https://www.mydomaine.com/thmb/JBwGOO8tKeEd3KKZZfoM7XU0_Xs=/1080x0/filters:no_upscale():strip_icc()/147969513_1032772157218233_9184212869626937747_n-a6272d61d1a3421abb8f2b5a13298a35.jpg",
     },
   ];
   const handleSubmit = async () => {
