@@ -23,7 +23,7 @@ const SignUp = () => {
   const submitSignUp = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/user/login`, {
+      const res = await fetch(`${BASE_URL}/user/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
