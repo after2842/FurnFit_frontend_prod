@@ -1,28 +1,45 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardDescription,
-  CardAction,
   CardContent,
   CardFooter,
 } from "@/components/ui/card";
-import { Armchair } from "lucide-react";
+import { Armchair, Loader2 } from "lucide-react";
 import Link from "next/link";
 
 const SignUp = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL
+  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
   const submitSignUp = async () => {
-    try{
-        fetch()
-    }
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/user/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
 
+      if (!res.ok) throw new Error("signupFailed❌");
+      router.push("/login");
+    } catch (error) {
+      console.error("ERROR❌", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -76,8 +93,18 @@ const SignUp = () => {
         </CardContent>
         <CardFooter className=" flex-col">
           <div className="w-full my-4">
-            <button className="w-full bg-black text-white py-2 rounded-lg font-bold hover:bg-gray-600 cursor-pointer">
-              Sign Up
+            <button
+              onClick={() => submitSignUp()}
+              disabled={isLoading}
+              className="w-full bg-black text-white py-2 rounded-lg font-bold hover:bg-gray-600 cursor-pointer"
+            >
+              {isLoading ? (
+                <div className="flex justify-center">
+                  <Loader2 className="animate-spin" />
+                </div>
+              ) : (
+                "Sign Up"
+              )}
             </button>
             <div className="text-center mt-2">
               already have an account?{" "}

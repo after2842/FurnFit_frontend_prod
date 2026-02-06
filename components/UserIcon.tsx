@@ -6,7 +6,7 @@ export function UserIcon({ isAuthed }: { isAuthed: boolean }) {
 
   return (
     <Link href={href} aria-label={isAuthed ? "goto account" : "goto login"}>
-      <User size={16} />
+      <User size={20} className="text-indigo-500" />
     </Link>
   );
 }

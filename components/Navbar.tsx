@@ -33,13 +33,10 @@ const Navbar = ({}) => (
 
       {/* User Actions */}
       <div className="flex items-center gap-4">
-        <button className="p-2 text-slate-400 hover:text-indigo-600 transition-colors">
+        <button className="p-2 text-slate-400 hover:text-indigo-600 transition-colors cursor-pointer">
           <Search size={20} />
         </button>
-        <button className="p-2 text-slate-400 hover:text-red-500 transition-colors">
-          <Heart size={20} />
-        </button>
-        <div className="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center text-slate-600 border border-slate-200 cursor-pointer hover:bg-slate-200 transition-colors">
+        <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center text-slate-600 border border-slate-300 cursor-pointer hover:scale-110 transition duration-300 ">
           <UserIcon isAuthed={false} />
         </div>
       </div>
