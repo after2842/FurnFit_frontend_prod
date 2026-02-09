@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Card,
   CardHeader,
@@ -11,6 +12,7 @@ import {
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
 export function Login() {
+  const router = useRouter();
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,14 +20,17 @@ export function Login() {
   const handleLogin = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/user/login`, {
+      const res = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
       if (!res.ok) {
+        console.error(res.status);
         throw new Error("nothing good@@@");
+      } else {
+        router.push("/");
       }
     } catch (error) {
       console.error("ERROR~!!!!", error);
@@ -50,7 +55,7 @@ export function Login() {
             <input
               type="email"
               placeholder="email@example.com"
-              className="w-full px-3 py-2 border border-gray-400 rounded-lg"
+              className="w-full px-3 py-2 border border-gray-400 rounded-lg text-black"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);

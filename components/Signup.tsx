@@ -15,6 +15,7 @@ import Link from "next/link";
 const SignUp = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [emailExist, setEmailExist] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +24,7 @@ const SignUp = () => {
   const submitSignUp = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/user/signup`, {
+      const res = await fetch(`${BASE_URL}/auth/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -32,9 +33,14 @@ const SignUp = () => {
           password,
         }),
       });
-
-      if (!res.ok) throw new Error("signupFailed❌");
-      router.push("/login");
+      if (res.status == 409) {
+        setEmailExist(true);
+      } else if (!res.ok) {
+        console.error(res.status);
+        throw new Error("signupFailed❌");
+      } else if (res.ok) {
+        router.push("/login");
+      }
     } catch (error) {
       console.error("ERROR❌", error);
     } finally {
@@ -69,11 +75,16 @@ const SignUp = () => {
             />
           </div>
           <div className="space-y-2">
-            <label className="text-md font-medium">Email</label>
+            <label className="text-md font-medium">
+              Email
+              <a className="text-red-400">{emailExist ? " * " : ""}</a>
+            </label>
             <input
               type="email"
               placeholder="email@example.com"
-              className="w-full px-3 py-2 border border-gray-400 rounded-lg"
+              className={`w-full px-3 py-2 border rounded-lg ${
+                emailExist ? "border-red-600" : "border-gray-400"
+              }`}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
