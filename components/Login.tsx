@@ -11,17 +11,24 @@ import {
 } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useQueryClient } from "@tanstack/react-query";
 export function Login() {
   const router = useRouter();
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms)); // only for test
+  // promise object => after ms, call resolve function.
+  const queryClient = useQueryClient();
   const handleLogin = async () => {
     try {
       setIsLoading(true);
+      await sleep(1000); // only for test
       const res = await fetch(`${BASE_URL}/auth/login`, {
         method: "POST",
+        credentials: "include", //need it, because let browser know => I'm going to accept cookie from the response
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
@@ -30,6 +37,8 @@ export function Login() {
         console.error(res.status);
         throw new Error("nothing good@@@");
       } else {
+        console.log(await res.json());
+        await queryClient.invalidateQueries({ queryKey: ["me"] });
         router.push("/");
       }
     } catch (error) {

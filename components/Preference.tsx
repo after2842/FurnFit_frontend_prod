@@ -12,6 +12,7 @@ import {
   ShoppingBag,
   CheckCircle2,
   Sparkles,
+  Search,
 } from "lucide-react";
 const PreferencesScreen = ({}) => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const PreferencesScreen = ({}) => {
   const [selectedStyle, setSelectedStyle] = useState("modern");
   const [roomWidth, setRoomWidth] = useState(12);
   const [roomLength, setRoomLength] = useState(14);
+  const [searchFurn, setSearchFurn] = useState("");
 
   const furnitureTypes = [
     { id: "sofa", icon: Sofa, label: "Sofa", desc: "Sectionals & Loveseats" },
@@ -60,6 +62,7 @@ const PreferencesScreen = ({}) => {
       style: selectedStyle,
       width: roomWidth.toString(),
       length: roomLength.toString(),
+      title: searchFurn,
     });
 
     router.push(`/result?${params.toString()}`);
@@ -72,10 +75,18 @@ const PreferencesScreen = ({}) => {
           Find furniture that{" "}
           <span className="text-indigo-600">actually fits.</span>
         </h1>
-        <p className="text-lg text-slate-500">
-          Tell us about your room dimensions and preferred style, we curate the
-          perfect pieces from top online retailers.
-        </p>
+        <div className="flex justify-center items-center text-lg w-full">
+          <input
+            type="text"
+            placeholder=" search your furniture"
+            value={searchFurn}
+            className="border rounded-lg w-full border-indigo-600 mr-2 px-2 py-1"
+            onChange={(e) => {
+              setSearchFurn(e.target.value);
+            }}
+          />
+          {/* <Search className="hover:text-inidigo-600 transition:color" /> */}
+        </div>
       </div>
 
       {/* Main Form Container */}
