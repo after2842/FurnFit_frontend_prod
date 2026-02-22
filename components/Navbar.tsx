@@ -3,19 +3,19 @@
 import { Armchair, Search, Heart, User } from "lucide-react";
 import { UserIcon } from "./UserIcon";
 import { useMe } from "@/features/auth/hooks/useMe";
+import Image from "next/image";
 const Navbar = ({}) => {
   const { data: me, isLoading } = useMe();
   const isAuthed = !!me;
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-sm border-b border-slate-200">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
         <div
           onClick={() => (window.location.href = "/")}
           className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
-            <Armchair size={18} />
+          <div className="">
+            <Image src="/logo3.svg" alt="Logo" width={40} height={40} />
           </div>
           <span className="font-bold text-xl text-slate-900 tracking-tight">
             FurniFit

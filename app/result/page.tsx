@@ -1,5 +1,6 @@
 import Result from "@/components/Result";
 import Navbar from "@/components/Navbar";
+import { cookies } from "next/headers";
 export default async function ResultsPage({
   searchParams,
 }: {
@@ -16,12 +17,14 @@ export default async function ResultsPage({
   let furniture = [];
   try {
     console.log("page was called");
+    const cookieHeader = (await cookies()).toString();
     const res = await fetch(
-      `${BASE_URL}/furniture/search?title=${title}&length=${length}`,
+      `http://localhost:3000/api/furniture/search?title=${title}&length=${length}`,
       {
         method: "GET",
-        credentials: "include", //need it, because let browser know => I'm going to accept cookie from the response
-        headers: { "Content-Type": "application/json" },
+        //credentials: "include", //need it, because let browser know => I'm going to accept cookie from the response
+        //server side request = > can't automatically include cookie, so explicitly attach it inside the header
+        headers: { "Content-Type": "application/json", cookie: cookieHeader },
       }
     );
     if (res.ok) {
@@ -40,17 +43,19 @@ export default async function ResultsPage({
   }
 
   return (
-    <div>
-      {" "}
+    <div className="">
       <Navbar />
-      <Result
-        type={type}
-        style={style}
-        roomWidth={width}
-        roomLength={length}
-        title={title}
-        items={furniture}
-      />
+
+      <div className="">
+        <Result
+          type={type}
+          style={style}
+          roomWidth={width}
+          roomLength={length}
+          title={title}
+          items={furniture}
+        />
+      </div>
     </div>
   );
 }
