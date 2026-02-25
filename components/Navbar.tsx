@@ -36,10 +36,10 @@ const Navbar = ({}) => {
         </div>
 
         {/* User Actions */}
-        <div className="flex items-center gap-4">
+        <div className="">
           <div
-            className={`bg-white rounded-full flex items-center justify-center text-slate-600 ${
-              !isAuthed ? "border border-slate-300" : ""
+            className={`bg-white backdrop-blur-sm ${
+              !isAuthed ? "" : ""
             } cursor-pointer hover:text-indigo-600 transition-colors `}
           >
             <UserIcon isAuthed={isAuthed} isLoading={isLoading} user={me} />

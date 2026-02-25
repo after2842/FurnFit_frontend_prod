@@ -1,6 +1,9 @@
 "use client";
 import { useMe } from "@/features/auth/hooks/useMe";
 import Link from "next/link";
+import UserProfile from "@/components/UserProfile";
+import Navbar from "@/components/Navbar";
+
 export default function Profile() {
   const { data: me, isLoading } = useMe();
   if (isLoading) return <div>loading...</div>;
@@ -13,11 +16,9 @@ export default function Profile() {
   const isAuthed = !!me;
   return (
     <div className="w-full min-h-screen">
-      <div className="h-screen flex flex-col justify-center items-center border">
-        <div className="text-3xl">
-          Hi, <a className="font-bold">{me?.name}</a>
-        </div>
-        <div>your email: {me?.email}</div>
+      <Navbar />
+      <div className="h-screen mt-12">
+        <UserProfile isAuthed={isAuthed} />
       </div>
     </div>
   );

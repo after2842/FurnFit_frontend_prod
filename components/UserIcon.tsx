@@ -16,10 +16,13 @@ export function UserIcon({
     <Link
       href={href}
       aria-label={isAuthed ? "goto account" : "goto login"}
-      className=""
+      className="bg-white/80 backdrop-blur-sm"
     >
       {!isAuthed ? (
-        <User size={20} className="text-indigo-500" />
+        <User
+          size={28}
+          className="text-indigo-500 bg-white/80 backdrop-blur-sm"
+        />
       ) : (
         <div className="font-bold">{user?.name}</div>
       )}

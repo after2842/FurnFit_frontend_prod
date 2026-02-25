@@ -1,4 +1,5 @@
 import { Sparkles } from "lucide-react";
+import Image from "next/image";
 interface LoadingProp {
   title: string;
   subtitle: string;
@@ -6,9 +7,15 @@ interface LoadingProp {
 const LoadingState = ({ title, subtitle }: LoadingProp) => (
   <div className="flex flex-col items-center justify-center w-full h-full animate-in fade-in">
     <div className="relative mb-8">
-      <div className="w-24 h-24 border-4 border-indigo-100 border-t-indigo-600 rounded-full animate-spin"></div>
+      <div className="w-24 h-24 border-4 border-indigo-100 border-t-indigo-200 rounded-full animate-spin"></div>
       <div className="absolute inset-0 flex items-center justify-center">
-        <Sparkles size={32} className="text-indigo-600 animate-pulse" />
+        <Image
+          src="/logo3.svg"
+          alt="Loading..."
+          width={50}
+          height={50}
+          className="animate-spin"
+        />
       </div>
     </div>
     <h2 className="text-3xl font-bold text-slate-800 tracking-tight">
