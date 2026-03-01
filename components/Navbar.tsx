@@ -18,7 +18,7 @@ const Navbar = ({}) => {
             <Image src="/logo3.svg" alt="Logo" width={40} height={40} />
           </div>
           <span className="font-bold text-xl text-slate-900 tracking-tight">
-            FurniFit
+            FurnFit
           </span>
         </div>
 

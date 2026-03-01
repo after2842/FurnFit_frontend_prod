@@ -111,15 +111,15 @@ export default function UserHistory() {
             <div
               key={item.id}
               onClick={() => router.push(`product/${item.id}`)}
-              className="group cursor-pointer bg-white border border-slate-200 rounded-lg overflow-hidden hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
+              className="group cursor-pointer bg-white border border-black rounded-md overflow-hidden hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
             >
-              <div className="relative aspect-square bg-slate-100">
+              <div className="relative aspect-square">
                 <Image
                   src={item?.image_urls[0]}
                   alt={item.title}
                   fill
                   sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-200"
+                  className="object-cover group-hover:scale-105 transition-transform duration-200 border"
                 />
               </div>
               <div className="p-3">

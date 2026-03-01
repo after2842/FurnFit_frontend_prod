@@ -4,12 +4,27 @@ import UserHistory from "./UserHistory";
 import { useState } from "react";
 import YourFit from "./YourFit";
 
-interface InstagramPost {
-  id: string;
-  caption: string;
-  firstComment: string;
-  images: string[];
-  timestamp: string;
+interface ArchetypeScore {
+  label: string;
+  score: number;
+  confidence: number;
+  evidence_refs: string[];
+}
+
+interface EvidenceItem {
+  post_shortcode: string;
+  excerpt: string;
+}
+
+interface InstagramAnalysis {
+  username: string;
+  summary: string;
+  aesthetic_archetypes: ArchetypeScore[];
+  lifestyle_and_occasion: ArchetypeScore[];
+  color_and_pattern_affinity: ArchetypeScore[];
+  evidence_index: EvidenceItem[];
+  overall_confidence: number;
+  missing_data: string[];
 }
 interface UserProfileProps {
   isAuthed: boolean;
@@ -17,7 +32,9 @@ interface UserProfileProps {
 
 export default function UserProfile({ isAuthed }: UserProfileProps) {
   const [isConnected, setIsConnected] = useState(false);
-  const [instagramData, setInstagramData] = useState<InstagramPost[]>([]);
+  const [InstaAnalysis, setInstaAnalysis] = useState<InstagramAnalysis | null>(
+    null
+  );
 
   return (
     <div>
@@ -30,13 +47,11 @@ export default function UserProfile({ isAuthed }: UserProfileProps) {
             <ConnectInstagram
               onConnected={(data) => {
                 setIsConnected(true);
-                setInstagramData(data);
+                setInstaAnalysis(data);
               }}
             />
           ) : (
-            <div>
-              <YourFit posts={instagramData} />
-            </div>
+            <div>{InstaAnalysis && <YourFit data={InstaAnalysis} />}</div>
           )}
         </>
       )}
