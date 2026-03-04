@@ -11,7 +11,7 @@ const PreferencesScreen = ({}) => {
   const [roomLength, setRoomLength] = useState(14);
   const [searchFurn, setSearchFurn] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     // Navigate to result page with query parameters
     if (e) e.preventDefault();
     const params = new URLSearchParams({

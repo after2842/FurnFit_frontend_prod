@@ -9,7 +9,7 @@ export default async function FurniturePage({ params }: PageProps) {
   const { id } = await params;
 
   // Fetch product details from backend (Server-side)
-  const res = await fetch(`http://localhost:3000/api/furniture/${id}`, {
+  const res = await fetch(`http://localhost:3000/api/product/${id}`, {
     cache: "no-store",
   });
 
@@ -17,13 +17,13 @@ export default async function FurniturePage({ params }: PageProps) {
     return <div>Product not found</div>;
   }
 
-  const furniture = await res.json();
+  const product = await res.json();
 
   return (
     <main className="w-full bg-white">
       <Navbar></Navbar>
       <div className="w-full">
-        <FurnitureDetail item={furniture} />
+        <FurnitureDetail item={product} />
       </div>
     </main>
   );

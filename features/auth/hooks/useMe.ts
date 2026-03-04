@@ -6,8 +6,12 @@ async function fetchMe(): Promise<Me | null> {
   const res = await fetch(`${BASE_URL}/auth/me`, {
     credentials: "include",
   });
+  console.log(res);
 
-  if (res.status === 401) return null;
+  if (res.status === 401) {
+    console.log("401????????");
+    return null;
+  }
   if (!res.ok) throw new Error(`Failed /auth/me: ${res.status}`);
 
   const data = await res.json();

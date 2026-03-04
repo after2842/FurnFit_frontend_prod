@@ -1,6 +1,5 @@
 "use client";
 
-import { Armchair, Search, Heart, User } from "lucide-react";
 import { UserIcon } from "./UserIcon";
 import { useMe } from "@/features/auth/hooks/useMe";
 import Image from "next/image";

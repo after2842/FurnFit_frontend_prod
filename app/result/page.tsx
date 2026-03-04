@@ -14,12 +14,12 @@ export default async function ResultsPage({
   const title = query.title || "";
   const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  let furniture = [];
+  let product = [];
   try {
     console.log("page was called");
     const cookieHeader = (await cookies()).toString();
     const res = await fetch(
-      `http://localhost:3000/api/furniture/search?title=${title}&length=${length}`,
+      `http://localhost:3000/api/product/search?title=${title}&length=${length}`,
       {
         method: "GET",
         //credentials: "include", //need it, because let browser know => I'm going to accept cookie from the response
@@ -32,8 +32,8 @@ export default async function ResultsPage({
       const data = await res.json();
       console.log("data", data);
       // data returns array directly. So check array? => assign directly, or an empty string
-      furniture = Array.isArray(data) ? data : [];
-      console.log("data: ", furniture);
+      product = Array.isArray(data) ? data : [];
+      console.log("data: ", product);
     } else {
       console.log(res.status);
       console.log("data fetched NOT OK");
@@ -53,7 +53,7 @@ export default async function ResultsPage({
           roomWidth={width}
           roomLength={length}
           title={title}
-          items={furniture}
+          items={product}
         />
       </div>
     </div>

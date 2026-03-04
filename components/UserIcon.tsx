@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
-import { User } from "lucide-react";
+import { User, Loader2 } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function UserIcon({
   isAuthed,
@@ -11,6 +13,13 @@ export function UserIcon({
   user: any;
 }) {
   const href = isAuthed ? "/profile" : "/signup";
+  if (isLoading) {
+    return (
+      <div className="bg-white/80 backdrop-blur-sm ">
+        <Skeleton className="h-6 w-12" />
+      </div>
+    );
+  }
 
   return (
     <Link
