@@ -1,6 +1,7 @@
 // app/furniture/[id]/page.tsx
 import FurnitureDetail from "@/components/FurnitureDetail";
 import Navbar from "@/components/Navbar";
+import { getBackendUrl } from "@/lib/api";
 interface PageProps {
   params: Promise<{ id: string }>;
 }
@@ -9,7 +10,7 @@ export default async function FurniturePage({ params }: PageProps) {
   const { id } = await params;
 
   // Fetch product details from backend (Server-side)
-  const res = await fetch(`http://localhost:3000/api/product/${id}`, {
+  const res = await fetch(`${getBackendUrl()}/product/${id}`, {
     cache: "no-store",
   });
 

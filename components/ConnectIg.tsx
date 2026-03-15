@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 import { Instagram, Camera, Heart, MessageCircle, Share2 } from "lucide-react";
 import { useState } from "react";
 import { LoadingState } from "./Loading";
@@ -15,7 +15,7 @@ export function ConnectInstagram({ onConnected }: ConnectInstagramProops) {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 240000);
       const res = await fetch(
-        `http://localhost:3000/api/user/sync-ig?usrname=${Igid}`,
+        `/api/user/sync-ig?usrname=${encodeURIComponent(Igid)}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

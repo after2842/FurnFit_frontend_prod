@@ -19,7 +19,9 @@ export default function UserHistory() {
     // Fetch user's search history from API
     const fetchHistory = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/user/history");
+        const res = await fetch("/api/user/history", {
+          credentials: "include",
+        });
         if (res.ok) {
           const data = await res.json();
           console.log(data);

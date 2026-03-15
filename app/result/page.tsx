@@ -1,6 +1,7 @@
 import Result from "@/components/Result";
 import Navbar from "@/components/Navbar";
 import { cookies } from "next/headers";
+import { getBackendUrl } from "@/lib/api";
 
 export default async function ResultsPage({
   searchParams,
@@ -18,10 +19,11 @@ export default async function ResultsPage({
 
   try {
     const cookieHeader = (await cookies()).toString();
+    const backendUrl = getBackendUrl();
 
     if (source === "text-rec" && query.url) {
       const res = await fetch(
-        `http://localhost:3000/api/product/text-recs-single?url=${encodeURIComponent(query.url)}&page=${page}`,
+        `${backendUrl}/product/text-recs-single?url=${encodeURIComponent(query.url)}&page=${page}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json", cookie: cookieHeader },
@@ -35,7 +37,7 @@ export default async function ResultsPage({
       }
     } else {
       const res = await fetch(
-        `http://localhost:3000/api/product/search?title=${title}&page=${page}`,
+        `${backendUrl}/product/search?title=${title}&page=${page}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json", cookie: cookieHeader },
