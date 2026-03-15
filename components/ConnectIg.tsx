@@ -12,30 +12,39 @@ export function ConnectInstagram({ onConnected }: ConnectInstagramProops) {
     console.log(Igid);
     try {
       setIsLoading(true);
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 240000);
       const res = await fetch(
-        `http://localhost:3000/api/user/get-ig?usrname=${Igid}`,
+        `http://localhost:3000/api/user/sync-ig?usrname=${Igid}`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
+          signal: controller.signal,
         }
       );
-      if (res.ok) {
-        setIsLoading(false);
+      clearTimeout(timeoutId);
 
+      if (res.ok) {
         const data = await res.json();
-        console.log(data);
+        console.log(data, "IG connection OKKKK");
         onConnected(data);
       } else {
-        console.log("somting wrong");
+        console.log("something wrong", res.status);
       }
-    } catch (err) {
-      console.error(err);
+    } catch (err: any) {
+      if (err.name === "AbortError") {
+        console.error("Request timed out");
+      } else {
+        console.error("Fetch error:", err);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex justify-center">
+    <div className="flex justify-center">
       <div className="max-w-lg">
         {/* Main Card */}
         {isLoading ? (

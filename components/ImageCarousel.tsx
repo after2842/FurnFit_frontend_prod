@@ -1,117 +1,111 @@
 "use client";
-
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "motion/react";
 
 interface ImageCarouselProps {
   images: string[];
-  itemsPerPage?: number;
-  autoPlay?: boolean;
-  autoPlayInterval?: number;
 }
 
-export function ImageCarousel({
-  images,
-  itemsPerPage = 1,
-  autoPlay = false,
-  autoPlayInterval = 3000,
-}: ImageCarouselProps) {
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const totalPages = Math.ceil(images.length / itemsPerPage);
-
-  const goToNext = () => {
-    setCurrentPage((prev) => (prev + 1) % totalPages);
-  };
-
-  const goToPrevious = () => {
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
-  };
-
-  const goToPage = (page: number) => {
-    setCurrentPage(page);
-  };
-
-  // Auto-play functionality
-  useEffect(() => {
-    if (!autoPlay || totalPages <= 1) return;
-
-    const interval = setInterval(goToNext, autoPlayInterval);
-    return () => clearInterval(interval);
-  }, [autoPlay, autoPlayInterval, totalPages, currentPage]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") goToPrevious();
-      if (e.key === "ArrowRight") goToNext();
+const variants = {
+  enter: (direction: number) => {
+    return {
+      x: direction > 0 ? "100%" : "-100%",
+      opacity: 0,
     };
+  },
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      x: direction < 0 ? "100%" : "-100%",
+      opacity: 0,
+    };
+  },
+};
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+export const ImageCarousel: React.FC<ImageCarouselProps> = ({ images }) => {
+  const [[page, direction], setPage] = useState([0, 0]);
+
+  // Use a wrap function to safely compute the index within bounds
+  const currentIndex = ((page % images.length) + images.length) % images.length;
+
+  const nextImage = () => {
+    setPage([page + 1, 1]);
+  };
+
+  const prevImage = () => {
+    setPage([page - 1, -1]);
+  };
+
+  if (!images || images.length === 0) return null;
 
   return (
-    <div className="relative max-w-md md:max-w-lg border border-1 border-black rounded-lg">
-      {/* Main carousel container */}
-      <div className="relative  rounded-lg">
-        {/* Only render current image */}
-        <div className="w-full h-full flex items-center justify-center">
-          <img
-            src={images[currentPage]}
-            alt={`Image ${currentPage + 1}`}
-            className="max-w-full max-h-full object-contain transition-opacity duration-300 rounded-lg"
-          />
-        </div>
+    <div className="relative w-full h-full group overflow-hidden bg-slate-100">
+      <AnimatePresence initial={false} custom={direction}>
+        <motion.img
+          key={page}
+          src={images[currentIndex]}
+          custom={direction}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.2 },
+          }}
+          className="absolute top-0 left-0 w-full h-full object-cover"
+          alt={`Product view ${currentIndex + 1}`}
+        />
+      </AnimatePresence>
 
-        {/* Previous button */}
-        <div className="flex justify-between mb-2 ">
-          {totalPages > 1 && (
-            <button
-              onClick={goToPrevious}
-              className="transition-all cursor-pointer ml-2"
-              aria-label="Previous image"
-            >
-              <ChevronLeft className="w-6 h-6 text-black hover:text-indigo-600 transition-colors" />
-            </button>
-          )}
-          {totalPages > 1 && (
-            <div className="text-center">
-              <span className="text-sm text-gray-600 ">
-                {currentPage + 1} / {totalPages}
-              </span>
-            </div>
-          )}
-          {/* Next button */}
-          {totalPages > 1 && (
-            <button
-              onClick={goToNext}
-              className="transition-all cursor-pointer mr-2"
-              aria-label="Next image"
-            >
-              <ChevronRight className="w-6 h-6 text-black hover:text-indigo-600 transition-colors" />
-            </button>
-          )}
-        </div>
-      </div>
-      {/* {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 mt-4">
-          {Array.from({ length: totalPages }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToPage(index)}
-              className={cn(
-                "w-2 h-2 rounded-full transition-all duration-300",
-                index === currentPage
-                  ? "bg-indigo-600 w-8"
-                  : "bg-gray-300 hover:bg-gray-400"
-              )}
-              aria-label={`Go to image ${index + 1}`}
-            />
-          ))}
-        </div>
-      )} */}
-      {/* Page counter */}
+      {/* Navigation Arrows */}
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prevImage}
+            className="absolute z-10 left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/30 hover:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-800 opacity-0 group-hover:opacity-100 transition-all shadow-sm border border-white/40"
+            aria-label="Previous image"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute z-10 right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/30 hover:bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-slate-800 opacity-0 group-hover:opacity-100 transition-all shadow-sm border border-white/40"
+            aria-label="Next image"
+          >
+            <ChevronRight size={20} />
+          </button>
+
+          {/* Dot Indicators */}
+          <div className="absolute z-10 bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => {
+                  if (idx !== currentIndex) {
+                    setPage([
+                      page + (idx - currentIndex),
+                      idx > currentIndex ? 1 : -1,
+                    ]);
+                  }
+                }}
+                className={`h-1.5 rounded-full transition-all ${
+                  idx === currentIndex
+                    ? "bg-white w-4 shadow-[0_0_8px_rgba(0,0,0,0.3)]"
+                    : "bg-white/60 w-1.5 hover:bg-white/90 shadow-[0_0_4px_rgba(0,0,0,0.2)]"
+                }`}
+                aria-label={`Go to image ${idx + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
-}
+};

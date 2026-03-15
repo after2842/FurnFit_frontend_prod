@@ -48,7 +48,7 @@ const SignUp = () => {
         } else if (!res.ok) {
           console.error(res.status);
           throw new Error("signupFailed❌");
-        } else if (res.ok && res.status === 200) {
+        } else if (res.ok) {
           setShowOtp(true);
         }
       } catch (error) {

@@ -15,7 +15,8 @@ async function fetchMe(): Promise<Me | null> {
   if (!res.ok) throw new Error(`Failed /auth/me: ${res.status}`);
 
   const data = await res.json();
-  return data.user as Me; // backend returns { user: ... }
+  console.log("MEMEMMEM", data.user);
+  return data.user as Me;
 }
 
 export function useMe() {
