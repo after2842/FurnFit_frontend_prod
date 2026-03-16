@@ -47,11 +47,9 @@ const history = [
   },
 ];
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
-
 async function fetchTextRecs() {
   console.log("fetching text-recs similarity search");
-  const res = await fetch(`${API_BASE}/product/text-recs`, {
+  const res = await fetch("/api/product/text-recs", {
     credentials: "include",
   });
   if (!res.ok) {

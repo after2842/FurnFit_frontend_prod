@@ -16,7 +16,6 @@ import Navbar from "./Navbar";
 import Image from "next/image";
 export function Login() {
   const router = useRouter();
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,7 +27,7 @@ export function Login() {
     try {
       setIsLoading(true);
 
-      const res = await fetch(`${BASE_URL}/auth/login`, {
+      const res = await fetch("/api/auth/login", {
         method: "POST",
         credentials: "include", //need it, because let browser know => I'm going to accept cookie from the response
         headers: { "Content-Type": "application/json" },

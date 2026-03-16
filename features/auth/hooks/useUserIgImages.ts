@@ -1,11 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
 export type UserImage = { url: string; nice_words?: string };
 
 async function fetchUserIgImages(): Promise<UserImage[]> {
-  const res = await fetch(`${BASE_URL}/user/user-ig-ims`, {
+  const res = await fetch("/api/user/user-ig-ims", {
     credentials: "include",
   });
   if (res.status === 401) return [];

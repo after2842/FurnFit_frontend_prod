@@ -1,9 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { Me } from "../types";
-const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 async function fetchMe(): Promise<Me | null> {
-  const res = await fetch(`${BASE_URL}/auth/me`, {
+  const res = await fetch("/api/auth/me", {
     credentials: "include",
   });
   console.log(res);

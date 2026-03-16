@@ -23,8 +23,6 @@ const SignUp = () => {
   const [showOtp, setShowOtp] = useState(false);
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-  const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
-
   const submitSignUp = async () => {
     if (showOtp) {
       submitVerifiedSignup();
@@ -33,7 +31,7 @@ const SignUp = () => {
       try {
         setIsLoading(true);
 
-        const res = await fetch(`${BASE_URL}/auth/signup/start`, {
+        const res = await fetch("/api/auth/signup/start", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -103,7 +101,7 @@ const SignUp = () => {
   const submitVerifiedSignup = async () => {
     try {
       setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/auth/signup/verify`, {
+      const res = await fetch("/api/auth/signup/verify", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

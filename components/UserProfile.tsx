@@ -261,7 +261,7 @@ export const Profile = ({
             <button
               onClick={async () => {
                 await fetch(
-                  `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/logout`,
+                  "/api/auth/logout",
                   { method: "POST", credentials: "include" }
                 );
                 window.location.href = "/";
