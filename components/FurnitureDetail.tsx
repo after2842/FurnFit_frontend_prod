@@ -32,7 +32,8 @@ export default function FurnitureDetail({ item }: FurnitureDetailProps) {
     const fetchAnalysis = async () => {
       try {
         const res = await fetch(
-          `/api/product/style-analysis?productId=${encodeURIComponent(item.id)}`
+          `/api/product/style-analysis?productId=${encodeURIComponent(item.id)}`,
+          { credentials: "include" }
         );
         if (res.ok) {
           const data = await res.json();
@@ -58,7 +59,8 @@ export default function FurnitureDetail({ item }: FurnitureDetailProps) {
       const res = await fetch(
         `/api/product/try-on?referenceImage=${encodeURIComponent(
           referenceImage
-        )}`
+        )}`,
+        { credentials: "include" }
       );
       if (!res.ok) {
         const text = await res.text();
