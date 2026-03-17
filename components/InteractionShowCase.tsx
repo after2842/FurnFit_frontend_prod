@@ -55,9 +55,7 @@ export const InteractiveShowcase = () => {
                 {/* Instagram Virtual Try-On - MOVED UP */}
                 <div className="flex-1 min-h-[300px] relative rounded-2xl overflow-hidden bg-slate-100 shadow-inner border border-slate-200 group mb-8">
                   <img
-                    src={
-                      showOriginal ? "/tryonexample.jpg" : "/try_on_result.png"
-                    }
+                    src={showOriginal ? "/src.jpeg" : "/try_on_result.png"}
                     alt="Virtual Try On"
                     className="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105"
                   />
