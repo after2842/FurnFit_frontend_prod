@@ -25,7 +25,7 @@ export const InteractiveShowcase = () => {
             <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
             <div className="relative h-[800px] lg:h-[700px] rounded-2xl overflow-hidden bg-white shadow-xl border border-slate-200">
               <img
-                src="/exmaple.jpg"
+                src="/src.jpeg"
                 alt="Product"
                 className="w-full h-full object-cover"
               />
@@ -41,7 +41,7 @@ export const InteractiveShowcase = () => {
               </div>
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8">
                 <h3 className="text-3xl font-bold text-white mb-2">
-                  Crinkle Texture Lounge Set
+                  Light Blue Bomber Jacket
                 </h3>
                 <p className="text-white/80 text-lg">$145.00</p>
               </div>

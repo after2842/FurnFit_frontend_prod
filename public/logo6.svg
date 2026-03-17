@@ -1,0 +1,73 @@
+<svg width="600" height="600" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="logo-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#000000" flood-opacity="0.04" />
+    </filter>
+    <filter id="logo-hover-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="30" flood-color="#4f46e5" flood-opacity="0.08" />
+    </filter>
+    <filter id="box-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#000000" flood-opacity="0.06" />
+    </filter>
+    
+    <clipPath id="card-clip">
+      <rect x="50" y="50" width="500" height="500" rx="40" />
+    </clipPath>
+
+    <style>
+      .svg-container { cursor: default; font-family: sans-serif; }
+      .main-box { filter: url(#logo-shadow); transition: all 0.5s ease; }
+      .svg-container:hover .main-box { filter: url(#logo-hover-shadow); }
+      
+      /* Background logo animation */
+      .bg-logo-wrap { 
+        opacity: 0.03; 
+        transform-origin: 470px 470px; 
+        transform: rotate(-12deg); 
+        transition: transform 0.7s ease; 
+      }
+      .svg-container:hover .bg-logo-wrap { transform: rotate(0deg); }
+      
+      /* Floating mark animation */
+      .mark-group { transform-origin: 454px 454px; transition: transform 0.5s ease; }
+      .svg-container:hover .mark-group { transform: scale(1.05) rotate(-3deg); }
+    </style>
+  </defs>
+
+  <g class="svg-container">
+    <rect class="main-box" x="50" y="50" width="500" height="500" rx="40" fill="#ffffff" />
+    <rect x="50" y="50" width="500" height="500" rx="40" fill="none" stroke="#f3f4f6" stroke-width="1" />
+
+    <g clip-path="url(#card-clip)">
+      <g class="bg-logo-wrap">
+        <svg x="310" y="310" width="320" height="320" viewBox="0 0 1500 1500">
+           <path d="M 0.00126961 50.001181 L 1161.329495 50.001181 " stroke="#4f46e5" stroke-width="100" transform="matrix(0, 0.75, -0.75, 0, 480.42, 288.62)"/>
+           <path d="M 0.000709797 49.999988 L 965.110168 49.999988 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1129.09, 1183.1)"/>
+           <path d="M -0.00127152 50.002429 L 1242.050919 50.002429 " stroke="#4f46e5" stroke-width="100" transform="matrix(0, -0.75, 0.75, 0, 1081.5, 1182.9)"/>
+           <path d="M 0.000709797 50.001765 L 965.110168 50.001765 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1129.09, 326.11)"/>
+           <path d="M -0.00194905 49.999948 L 901.440837 49.999948 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1119.01, 613.3)"/>
+           <path d="M -0.00194905 49.999851 L 901.440837 49.999851 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1119.01, 900.55)"/>
+        </svg>
+      </g>
+    </g>
+
+    <text x="106" y="136" font-size="40" fill="#9ca3af" font-weight="300">your clothes</text>
+    <text x="106" y="184" font-size="40" fill="#1f2937" font-weight="400">fit here</text>
+    <text x="106" y="484" font-size="64" fill="#111827" font-weight="800">FurnFit<tspan fill="#4f46e5">.</tspan></text>
+
+    <g class="mark-group">
+      <rect x="414" y="414" width="80" height="80" rx="16" fill="#ffffff" filter="url(#box-shadow)" />
+      <rect x="414" y="414" width="80" height="80" rx="16" fill="none" stroke="#f9fafb" stroke-width="1" />
+      
+      <svg x="426" y="426" width="56" height="56" viewBox="0 0 1500 1500">
+         <path d="M 0.00126961 50.001181 L 1161.329495 50.001181 " stroke="#4f46e5" stroke-width="100" transform="matrix(0, 0.75, -0.75, 0, 480.42, 288.62)"/>
+         <path d="M 0.000709797 49.999988 L 965.110168 49.999988 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1129.09, 1183.1)"/>
+         <path d="M -0.00127152 50.002429 L 1242.050919 50.002429 " stroke="#4f46e5" stroke-width="100" transform="matrix(0, -0.75, 0.75, 0, 1081.5, 1182.9)"/>
+         <path d="M 0.000709797 50.001765 L 965.110168 50.001765 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1129.09, 326.11)"/>
+         <path d="M -0.00194905 49.999948 L 901.440837 49.999948 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1119.01, 613.3)"/>
+         <path d="M -0.00194905 49.999851 L 901.440837 49.999851 " stroke="#4f46e5" stroke-width="100" transform="matrix(-0.75, 0, 0, -0.75, 1119.01, 900.55)"/>
+      </svg>
+    </g>
+  </g>
+</svg>
+
