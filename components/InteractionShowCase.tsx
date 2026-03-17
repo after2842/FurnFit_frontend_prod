@@ -21,9 +21,10 @@ export const InteractiveShowcase = () => {
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-10 items-stretch">
           {/* Big Product Image */}
-          <div className="w-full lg:w-1/2 relative group">
-            <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-            <div className="relative h-[800px] lg:h-[700px] rounded-2xl overflow-hidden bg-white shadow-xl border border-slate-200">
+          <div className="w-full lg:w-1/2">
+            <div className="relative group h-[800px] lg:h-[700px] rounded-2xl overflow-visible bg-white shadow-xl border border-slate-200">
+              <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500 pointer-events-none"></div>
+              <div className="relative w-full h-full rounded-2xl overflow-hidden">
               <img
                 src="/src.jpeg"
                 alt="Product"
@@ -44,6 +45,7 @@ export const InteractiveShowcase = () => {
                   Light Blue Bomber Jacket
                 </h3>
                 <p className="text-white/80 text-lg">$145.00</p>
+              </div>
               </div>
             </div>
           </div>

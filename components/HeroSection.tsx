@@ -155,7 +155,7 @@ export const HeroSection = () => {
           >
             <div className="h-40 bg-slate-100 relative">
               <img
-                src="/example.jpg"
+                src="/exmaple.jpg"
                 alt="Recommended Item"
                 className="w-full h-full object-cover"
               />
