@@ -7,7 +7,9 @@ const Bottom = () => {
         <div className="text-xs lg:text-sm">{""}</div>
         <div className="flex gap-4">
           <a
-            href="#"
+            href="https://www.instagram.com/2amuel.c/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-slate-400 hover:text-indigo-600 transition-colors"
           >
             <span className="sr-only">Instagram</span>
