@@ -21,7 +21,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold mb-6">
-              <Sparkles size={16} /> AI-Powered Personalization
+              <img src="/logo5.svg" width={16} /> AI-Powered Personalization
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
               Find apparel that{" "}
@@ -49,7 +49,10 @@ export const HeroSection = () => {
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </button>
-              <button className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-300 hover:border-indigo-600 text-slate-700 rounded-xl font-bold transition-colors cursor-pointer">
+              <button
+                onClick={() => router.push("/login")}
+                className="w-full sm:w-auto px-8 py-4 bg-white border border-slate-300 hover:border-indigo-600 text-slate-700 rounded-xl font-bold transition-colors cursor-pointer"
+              >
                 Explore Demo
               </button>
             </div>
@@ -110,7 +113,7 @@ export const HeroSection = () => {
           >
             <div className="flex items-center gap-3 mb-2">
               <div className="bg-indigo-100 text-indigo-600 p-2 rounded-lg">
-                <Sparkles size={16} />
+                <img src="/logo3.svg" width={16} />
               </div>
               <div className="text-sm font-bold text-slate-900">
                 Archetype Found
@@ -152,7 +155,7 @@ export const HeroSection = () => {
           >
             <div className="h-40 bg-slate-100 relative">
               <img
-                src="https://images.unsplash.com/photo-1769107805465-bfd41863f1a0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZmFzaGlvbiUyMGFlc3RoZXRpYyUyMG91dGZpdHxlbnwxfHx8fDE3NzMzMDgyOTl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src="/example.jpg"
                 alt="Recommended Item"
                 className="w-full h-full object-cover"
               />
@@ -165,9 +168,9 @@ export const HeroSection = () => {
                 AI Agent Review
               </div>
               <p className="text-[10px] text-slate-600 leading-tight">
-                "Based on your recent Tokyo trip photos, this oversized
-                minimalist jacket perfectly aligns with your aesthetic and fits
-                your neutral color palette preference."
+                "Based on your recent Tokyo trip photos, this beige minimalist
+                shirts perfectly aligns with your aesthetic and fits your
+                neutral color palette preference."
               </p>
             </div>
           </motion.div>
