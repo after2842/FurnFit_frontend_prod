@@ -1,4 +1,4 @@
-import { User, Instagram, Twitter, Github } from "lucide-react";
+import { User, Instagram, Twitter, Github, Linkedin } from "lucide-react";
 const Bottom = () => {
   return (
     <div className="bottom-0 z-50 bg-white/50 backdrop-blur-md border-b border-slate-200">
@@ -17,11 +17,13 @@ const Bottom = () => {
             href="#"
             className="text-slate-400 hover:text-indigo-600 transition-colors"
           >
-            <span className="sr-only">Twitter</span>
-            <Twitter size={24} />
+            <span className="sr-only">LinkedIn</span>
+            <Linkedin size={24} />
           </a>
           <a
-            href="#"
+            href="https://github.com/after2842/FurnFit_frontend_prod"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-slate-400 hover:text-indigo-600 transition-colors"
           >
             <span className="sr-only">GitHub</span>
