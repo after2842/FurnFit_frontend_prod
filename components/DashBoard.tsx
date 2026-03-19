@@ -15,6 +15,7 @@ import Navbar from "./Navbar";
 import { useMe } from "@/features/auth/hooks/useMe";
 import { useUserIgImages } from "@/features/auth/hooks/useUserIgImages";
 import PreferencesScreen from "./Preference";
+import FakeFilter from "./FakeFilter";
 import Link from "next/link";
 const history = [
   {
@@ -167,6 +168,9 @@ export const Dashboard = () => {
       <main className="pt-12 mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="mb-12">
           <PreferencesScreen />
+          <div className="mt-4 max-w-3xl mx-auto">
+            <FakeFilter />
+          </div>
         </div>
 
         {/* Recommendations Feed — one section per IG image */}
