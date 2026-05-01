@@ -25,10 +25,13 @@ export const InteractiveShowcase = () => {
             <div className="relative group h-[800px] lg:h-[700px] rounded-2xl overflow-visible bg-white shadow-xl border border-slate-200">
               <div className="absolute -inset-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-500 pointer-events-none"></div>
               <div className="relative w-full h-full rounded-2xl overflow-hidden">
-              <img
+              <Image
                 src="/src.jpeg"
                 alt="Product"
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                loading="lazy"
+                className="object-cover"
               />
               <div className="absolute top-6 right-6 bg-indigo-600 text-white text-sm font-bold px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
                 <Image
@@ -56,10 +59,13 @@ export const InteractiveShowcase = () => {
               <CardContent className="p-8 flex flex-col h-full">
                 {/* Instagram Virtual Try-On - MOVED UP */}
                 <div className="flex-1 min-h-[300px] relative rounded-2xl overflow-hidden bg-slate-100 shadow-inner border border-slate-200 group mb-8">
-                  <img
-                    src={showOriginal ? "/target.jpeg" : "/try_on_result.png"}
+                  <Image
+                    src={showOriginal ? "/target.jpeg" : "/try_on_result.jpg"}
                     alt="Virtual Try On"
-                    className="w-full h-full object-cover object-top transition-all duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    loading="lazy"
+                    className="object-cover object-top transition-all duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
 

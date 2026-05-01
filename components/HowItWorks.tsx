@@ -114,8 +114,10 @@ export const HowItWorks = () => {
               className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-slate-200 max-w-md mx-auto bg-white aspect-[4/5] group"
             >
               <img
-                src="https://images.unsplash.com/photo-1629922949137-e236a5ab497d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwZmFzaGlvbiUyMGVkaXRvcmlhbHxlbnwxfHx8fDE3NzMyMzIwMzV8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src="https://images.unsplash.com/photo-1629922949137-e236a5ab497d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=70&w=600"
                 alt="AI Fashion Analysis"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
 

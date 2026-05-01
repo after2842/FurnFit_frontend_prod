@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import { Instagram, Sparkles, MoveRight, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -21,7 +22,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-100 text-indigo-700 text-sm font-semibold mb-6">
-              <img src="/logo5.svg" width={16} /> AI-Powered Personalization
+              <Image src="/logo5.svg" alt="" width={16} height={16} priority /> AI-Powered Personalization
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.1]">
               Find apparel that{" "}
@@ -75,8 +76,10 @@ export const HeroSection = () => {
             <div className="p-3 flex items-center gap-2 border-b border-slate-100">
               <div className="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
                 <img
-                  src="https://images.unsplash.com/photo-1701850508570-75e73169fd7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdHlsaXNoJTIwcGVyc29uJTIwaW5zdGFncmFtJTIwcHJvZmlsZXxlbnwxfHx8fDE3NzMzMDgzMDR8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                  src="https://images.unsplash.com/photo-1701850508570-75e73169fd7a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=70&w=80"
                   alt="Profile"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -90,8 +93,10 @@ export const HeroSection = () => {
             </div>
             <div className="h-64 bg-slate-100 relative">
               <img
-                src="https://images.unsplash.com/photo-1768489038395-9ee146fb2b2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0cmVuZHklMjBzdHJlZXR3ZWFyJTIwZmFzaGlvbiUyMG91dGZpdHxlbnwxfHx8fDE3NzMzMDgzMDB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+                src="https://images.unsplash.com/photo-1768489038395-9ee146fb2b2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=70&w=400"
                 alt="Outfit"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-2 left-2 bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-1 rounded-md flex items-center gap-1">
@@ -113,7 +118,7 @@ export const HeroSection = () => {
           >
             <div className="flex items-center gap-3 mb-2">
               <div className="bg-indigo-100 text-indigo-600 p-2 rounded-lg">
-                <img src="/logo3.svg" width={16} />
+                <Image src="/logo3.svg" alt="" width={16} height={16} />
               </div>
               <div className="text-sm font-bold text-slate-900">
                 Archetype Found
@@ -154,10 +159,12 @@ export const HeroSection = () => {
             className="absolute bottom-10 right-20 lg:right-40 w-56 z-30 shadow-2xl rounded-2xl bg-white border border-indigo-200 overflow-hidden"
           >
             <div className="h-40 bg-slate-100 relative">
-              <img
+              <Image
                 src="/exmaple.jpg"
                 alt="Recommended Item"
-                className="w-full h-full object-cover"
+                fill
+                sizes="224px"
+                className="object-cover"
               />
               <div className="absolute top-2 right-2 bg-indigo-600 text-white text-[10px] font-bold px-2 py-1 rounded-full shadow-sm">
                 98% Match
